@@ -1,7 +1,7 @@
 const canvas = document.getElementById("gameCanvas");
 const ctx = canvas.getContext("2d");
 
-let player = { x: 50, y: 50, size: 20, dx: 0, dy: 0 };
+let player = { x: 50, y: 50, size: 30, dx: 0, dy: 0 };
 let dot = spawnDot();
 let score = 0;
 let speed = 4;
@@ -42,7 +42,7 @@ function update() {
   player.x += player.dx * speed;
   player.y += player.dy * speed;
 
-  // Stay within bounds
+  // Wall check
   if (
     player.x < player.size / 2 ||
     player.x > canvas.width - player.size / 2 ||
@@ -53,7 +53,7 @@ function update() {
     return;
   }
 
-  // Eat dot
+  // Dot collision
   const dist = Math.hypot(player.x - dot.x, player.y - dot.y);
   if (dist < player.size) {
     score += 10;
@@ -93,7 +93,7 @@ function restartGame() {
   const overlay = document.getElementById("overlay");
   if (overlay) overlay.remove();
 
-  player = { x: 50, y: 50, size: 20, dx: 0, dy: 0 };
+  player = { x: 50, y: 50, size: 30, dx: 0, dy: 0 };
   dot = spawnDot();
   score = 0;
   speed = 4;
@@ -102,11 +102,20 @@ function restartGame() {
   gameLoop();
 }
 
+// Desktop keyboard controls
 document.addEventListener("keydown", e => {
   if (e.key === "ArrowUp")    { player.dy = -1; player.dx = 0; }
   if (e.key === "ArrowDown")  { player.dy = 1;  player.dx = 0; }
   if (e.key === "ArrowLeft")  { player.dx = -1; player.dy = 0; }
   if (e.key === "ArrowRight") { player.dx = 1;  player.dy = 0; }
 });
+
+// Mobile button controls
+function setDirection(dir) {
+  if (dir === 'up')    { player.dx = 0;  player.dy = -1; }
+  if (dir === 'down')  { player.dx = 0;  player.dy = 1; }
+  if (dir === 'left')  { player.dx = -1; player.dy = 0; }
+  if (dir === 'right') { player.dx = 1;  player.dy = 0; }
+}
 
 gameLoop();

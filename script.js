@@ -96,7 +96,7 @@ function restartGame() {
   player = { x: 50, y: 50, size: 30, dx: 0, dy: 0 };
   dot = spawnDot();
   score = 0;
-  speed = 4;
+  speed = 1;
   gameOver = false;
   document.getElementById("score").textContent = "Score: 0";
   gameLoop();

@@ -4,7 +4,7 @@ const ctx = canvas.getContext("2d");
 let player = { x: 50, y: 50, size: 30, dx: 0, dy: 0 };
 let dot = spawnDot();
 let score = 0;
-let speed = 4;
+let speed = 1;
 let gameOver = false;
 
 function spawnDot() {
@@ -61,7 +61,7 @@ function update() {
     dot = spawnDot();
 
     if (score % 50 === 0) speed += 0.5;
-    if (score >= 100) endGame("🎉 You Win!");
+    if (score >= 200) endGame("🎉 You Win!");
   }
 }
 

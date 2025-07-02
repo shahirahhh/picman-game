@@ -4,7 +4,7 @@ const ctx = canvas.getContext("2d");
 let player = { x: 50, y: 50, size: 30, dx: 0, dy: 0 };
 let dot = spawnDot();
 let score = 0;
-let speed = 1;
+let speed = 3;
 let gameOver = false;
 let direction = "right";
 
@@ -94,7 +94,7 @@ function update() {
     }
 
     // Win condition
-    if (score >= 10) {
+    if (score >= 5) {
       endGame("🎉 You Win!");
     }
   }
@@ -135,7 +135,7 @@ function restartGame() {
   player = { x: 50, y: 50, size: 30, dx: 0, dy: 0 };
   dot = spawnDot();
   score = 0;
-  speed = 1;
+  speed = 3;
   direction = "right";
   gameOver = false;
   document.getElementById("score").textContent = "Score: 0";

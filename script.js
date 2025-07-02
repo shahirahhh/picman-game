@@ -94,7 +94,7 @@ function update() {
     }
 
     // Win condition
-    if (score >= 20) {
+    if (score >= 10) {
       endGame("🎉 You Win!");
     }
   }
